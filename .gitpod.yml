@@ -5,3 +5,8 @@ vscode:
 tasks:
   - name: Intall java 21
     before: sdk install java 21.0.5-tem < /dev/null
+
+  - name: Launch docker postgres
+    init: |
+      docker run --name spring-postgres -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine 
+      docker port spring-postgres
