@@ -1,3 +1,7 @@
 vscode:
   extensions:
     - vscjava.vscode-spring-initializr
+
+tasks:
+  - name: Intall java 21
+    before: sdk install java 21.0.5-tem < /dev/null
