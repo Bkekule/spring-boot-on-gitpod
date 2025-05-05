@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "check-single-instance",
+            "type": "shell",
+            "command": "preg -f 'java.GitpodVersionApplication' || exit 0",
+            "problemMatcher": []
+        }
+    ]
+}

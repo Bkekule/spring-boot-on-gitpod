@@ -9,6 +9,7 @@
             "name": "GitpodVersionApplication",
             "request": "launch",
             "mainClass": "bobo_master_spring.gitpod_version.GitpodVersionApplication",
+            "preLaunchTask": "check-single-instance",
             "projectName": ""
         },
         {
@@ -16,6 +17,6 @@
             "name": "Java Files",
             "request": "launch",
             "mainClass": "${file}"
-        }
+        }   
     ]
 }
