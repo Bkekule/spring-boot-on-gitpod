@@ -8,5 +8,5 @@ tasks:
 
   - name: Launch docker postgres
     init: |
-      docker run --name spring-postgres -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres:alpine 
-      docker port spring-postgres
+      docker run --name spring-postgres-container -e POSTGRES_USER=bobo -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:alpine 
+      ufw allow 5432/tcp
