@@ -4,5 +4,6 @@ app:
         username: postgres
         password: password
         pool-size: 30
+        driver-class-name: org.postgresql.Driver
 
 # spring.application.name=gitpod_version
