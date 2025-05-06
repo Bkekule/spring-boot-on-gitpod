@@ -1,12 +1,10 @@
 package bobo_master_spring.gitpod_version.demo.dao;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.flywaydb.core.internal.jdbc.JdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,19 +28,12 @@ public class PersonDataAccessService implements PersonDao{
 
     @Override
     public List<Person> selectAllPeople() {
-        String sqlCommand = "SELECT id, name FROM persons";
-        List<Person> people = new ArrayList<>();
-        try {
-            people = jdbcTemplate.query(sqlCommand, personInfo -> {
-                UUID id = UUID.fromString(personInfo.getString("id"));
-                String name = personInfo.getString("name");
-                return new Person(id, name);
-            });
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return people;
+        String sqlCommand = "SELECT id, name FROM person";
+        return jdbcTemplate.query(sqlCommand, (personInfo, rowNumber) -> {
+            UUID id = UUID.fromString(personInfo.getString("id"));
+            String name = personInfo.getString("name");
+            return new Person(id, name);
+        });
     }
     // @Override
     // public List<Person> selectAllPeople() {
