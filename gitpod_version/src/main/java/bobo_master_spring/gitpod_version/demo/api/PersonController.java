@@ -24,13 +24,13 @@ public class PersonController {
     private final PersonService personService;
 
     @Autowired
-    public PersonController(PersonService personSerive) {
-        this.personService = personSerive;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
     
     @PostMapping
-    public void addPerson(@Valid @NonNull @RequestBody Person person){
-        personService.addPerson(person);
+    public int addPerson(@Valid @NonNull @RequestBody Person person){
+        return personService.addPerson(person);
     }
 
     @GetMapping
@@ -43,7 +43,7 @@ public class PersonController {
         return personService.getPersonById(id).orElse(null);
     }
 
-    @PutMapping(path={"id"})
+    @PutMapping(path={"{id}"})
     public int updatePersonById(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person person){
         return personService.updatePersonById(id, person);
     }
