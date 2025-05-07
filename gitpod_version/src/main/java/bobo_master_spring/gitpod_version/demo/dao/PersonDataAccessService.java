@@ -51,7 +51,7 @@ public class PersonDataAccessService implements PersonDao{
 
     @Override
     public Optional<Person> selectPersonById(UUID id) {
-        String sqlCommand = "SELECT name FROM person WHERE id = ?";
+        String sqlCommand = "SELECT id, name FROM person WHERE id = ?";
         return Optional.ofNullable(jdbcTemplate.queryForObject(
                 sqlCommand,
                 (resultSet, rowNumber) -> {
