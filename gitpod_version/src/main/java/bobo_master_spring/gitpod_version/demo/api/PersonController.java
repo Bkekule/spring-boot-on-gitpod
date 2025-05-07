@@ -28,22 +28,22 @@ public class PersonController {
         this.personService = personService;
     }
     
-    @PostMapping
+    @PostMapping(produces = "application/json")
     public int addPerson(@Valid @NonNull @RequestBody Person person){
         return personService.addPerson(person);
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public List<Person> getAllPeople(){
         return personService.getAllPeople();
     }
 
-    @GetMapping(path="{id}")
+    @GetMapping(path="{id}", produces = "application/json")
     public Person getPersonById(@PathVariable("id") UUID id){
         return personService.getPersonById(id).orElse(null);
     }
 
-    @PutMapping(path={"{id}"})
+    @PutMapping(path="{id}", produces = "application/json")
     public int updatePersonById(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Person person){
         return personService.updatePersonById(id, person);
     }
