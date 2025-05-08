@@ -15,8 +15,7 @@ import bobo_master_spring.gitpod_version.demo.model.Person;
 public class PersonDataAccessService implements PersonDao{
     
     private final JdbcTemplate jdbcTemplate;
-    
-    @Autowired
+
     public PersonDataAccessService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
