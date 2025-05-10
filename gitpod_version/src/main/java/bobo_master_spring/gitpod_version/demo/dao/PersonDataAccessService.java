@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
@@ -16,14 +16,14 @@ public class PersonDataAccessService implements PersonDao{
     
     private final JdbcTemplate jdbcTemplate;
 
-    public PersonDataAccessService(JdbcTemplate jdbcTemplate) {
+    public PersonDataAccessService(@Qualifier("hikari") JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public int insertPerson(UUID id, Person person) {
+    public int insertPerson(UUID id, @NonNull Person person) {
         String sqlCommand = "INSERT INTO person (id, name) VALUE (?, ?)";
-        return jdbcTemplate.update(sqlCommand, id, person.getName());
+        return jdbcTemplate.update(sqlCommand, id, person.name());
     }
 
     @Override
@@ -45,7 +45,7 @@ public class PersonDataAccessService implements PersonDao{
     @Override
     public int updatePersonById(UUID id, @NonNull Person person) {
         String sqlCommand = "UPDATE person SET name = ? WHERE id = ?";
-        return jdbcTemplate.update(sqlCommand, person.getName(), id);
+        return jdbcTemplate.update(sqlCommand, person.name(), id);
     }
 
     @Override
